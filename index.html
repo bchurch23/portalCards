@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal Cards · Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1a7a4a;
+    --green-light: #e8f5ee;
+    --green-mid: #2d9c5f;
+    --cream: #f7f4ef;
+    --dark: #111410;
+    --mid: #3a3d35;
+    --muted: #7a7d72;
+    --border: #dedad2;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  .header {
+    background: var(--dark);
+    padding: 28px 32px;
+  }
+
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .brand {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .brand span { color: var(--green-mid); }
+
+  .stats-row {
+    display: flex;
+    gap: 24px;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+
+  .content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 32px;
+  }
+
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .player-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .player-table thead {
+    background: var(--dark);
+  }
+
+  .player-table thead th {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px;
+    text-align: left;
+  }
+
+  .player-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.1s;
+  }
+
+  .player-table tbody tr:last-child { border-bottom: none; }
+  .player-table tbody tr:hover { background: var(--cream); }
+
+  .player-table td {
+    padding: 13px 16px;
+    font-size: 14px;
+    color: var(--mid);
+    vertical-align: middle;
+  }
+
+  .player-name-cell {
+    font-weight: 500;
+    color: var(--dark);
+    font-size: 15px;
+  }
+
+  .pos-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 3px;
+    background: var(--green-light);
+    color: var(--green);
+  }
+
+  .status-badge {
+    display: inline-block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+
+  .status-active { background: #e8f5ee; color: #1a7a4a; }
+  .status-committed { background: #e8eef5; color: #1a4a7a; }
+  .status-inactive { background: #f5f0e8; color: #7a5a1a; }
+
+  .link-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .link-text {
+    font-size: 12px;
+    color: var(--muted);
+    font-family: monospace;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .copy-btn {
+    background: var(--dark);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .copy-btn:hover { background: var(--green); }
+  .copy-btn.copied { background: var(--green); }
+
+  .view-btn {
+    display: inline-block;
+    background: transparent;
+    color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.15s;
+  }
+
+  .view-btn:hover { background: var(--green); color: #fff; }
+
+  .empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--muted);
+    font-size: 14px;
+  }
+
+  .how-to {
+    margin-top: 28px;
+    background: var(--dark);
+    border-radius: 10px;
+    padding: 20px 24px;
+  }
+
+  .how-to .section-label { color: var(--green-mid); border-color: #2a2e28; }
+
+  .how-to ol {
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .how-to li {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .how-to li strong { color: #fff; }
+
+  .how-to code {
+    background: #1e2420;
+    color: var(--green-mid);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .content { padding: 20px 16px; }
+    .header { padding: 20px 16px; }
+    .link-text { display: none; }
+    .player-table td { padding: 10px 10px; }
+    .player-table thead th { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="brand">Portal<span>Cards</span></div>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num" id="total-count">0</div>
+        <div class="stat-lbl">Total Cards</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="active-count">0</div>
+        <div class="stat-lbl">Active</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="committed-count">0</div>
+        <div class="stat-lbl">Committed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="section-label">Player Cards</div>
+
+  <table class="player-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>Pos</th>
+        <th>Previous School</th>
+        <th>Status</th>
+        <th>Link</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="player-tbody">
+      <!-- ============================================================
+           ADD PLAYERS HERE — copy one <tr> block per player
+           ============================================================
+
+      <tr>
+        <td class="player-name-cell">First Last</td>
+        <td><span class="pos-badge">RHP</span></td>
+        <td>School Name</td>
+        <td><span class="status-badge status-active">Active</span></td>
+        <td>
+          <div class="link-cell">
+            <span class="link-text">bchurch23.github.io/portalCards/file-name.html</span>
+            <button class="copy-btn" onclick="copyLink(this, 'https://bchurch23.github.io/portalCards/file-name.html')">Copy</button>
+          </div>
+        </td>
+        <td><a class="view-btn" href="https://bchurch23.github.io/portalCards/file-name.html" target="_blank">View</a></td>
+      </tr>
+
+           STATUS OPTIONS:
+           Active:    <span class="status-badge status-active">Active</span>
+           Committed: <span class="status-badge status-committed">Committed</span>
+           Inactive:  <span class="status-badge status-inactive">Inactive</span>
+           ============================================================ -->
+
+      <!-- EXAMPLE ROW — delete this once you add real players -->
+      <tr>
+        <td class="player-name-cell">Mike Johnson</td>
+        <td><span class="pos-badge">RHP</span></td>
+        <td>State University</td>
+        <td><span class="status-badge status-active">Active</span></td>
+        <td>
+          <div class="link-cell">
+            <span class="link-text">bchurch23.github.io/portalCards/mike-johnson.html</span>
+            <button class="copy-btn" onclick="copyLink(this, 'https://bchurch23.github.io/portalCards/mike-johnson.html')">Copy</button>
+          </div>
+        </td>
+        <td><a class="view-btn" href="https://bchurch23.github.io/portalCards/mike-johnson.html" target="_blank">View</a></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="how-to">
+    <div class="section-label">How to add a new player</div>
+    <ol>
+      <li><strong>Duplicate</strong> the <code>player-card-template.html</code> file and rename it to the player's name e.g. <code>jake-smith.html</code></li>
+      <li><strong>Edit</strong> the file — swap in their name, stats, pitches, clip links, headshot</li>
+      <li><strong>Upload</strong> both the updated <code>index.html</code> and new player file to GitHub</li>
+      <li><strong>Add a row</strong> to this index by copying the example <code>&lt;tr&gt;</code> block in the HTML and filling in their details</li>
+      <li><strong>Copy the link</strong> from this dashboard and send it to the player</li>
+    </ol>
+  </div>
+
+</div>
+
+<script>
+  function copyLink(btn, url) {
+    navigator.clipboard.writeText(url).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Auto count stats from table
+  const rows = document.querySelectorAll('#player-tbody tr');
+  let active = 0, committed = 0;
+  rows.forEach(row => {
+    const status = row.querySelector('.status-badge');
+    if (!status) return;
+    if (status.classList.contains('status-active')) active++;
+    if (status.classList.contains('status-committed')) committed++;
+  });
+  document.getElementById('total-count').textContent = rows.length;
+  document.getElementById('active-count').textContent = active;
+  document.getElementById('committed-count').textContent = committed;
+</script>
+
+</body>
+</html>
