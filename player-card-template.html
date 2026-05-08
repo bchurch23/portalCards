@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike Johnson · RHP · Transfer Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1a7a4a;
+    --green-light: #e8f5ee;
+    --green-mid: #2d9c5f;
+    --cream: #f7f4ef;
+    --dark: #111410;
+    --mid: #3a3d35;
+    --muted: #7a7d72;
+    --border: #dedad2;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--dark);
+    padding: 48px 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--green);
+    opacity: 0.12;
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+  }
+
+  .headshot {
+    width: 110px;
+    height: 130px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 3px solid var(--green-mid);
+    flex-shrink: 0;
+    background: var(--mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: 0.05em;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .hero-text { flex: 1; }
+
+  .portal-badge {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+
+  .player-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 52px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 0.95;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+
+  .player-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .player-meta span {
+    color: var(--green-mid);
+    margin: 0 6px;
+  }
+
+  /* MAIN CONTENT */
+  .content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px 48px;
+  }
+
+  /* BIO */
+  .bio {
+    border-left: 3px solid var(--green);
+    padding: 20px 0 20px 20px;
+    margin: 28px 0;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* STATS */
+  .stats-section { margin-bottom: 32px; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .stat-box {
+    background: var(--white);
+    padding: 16px 12px;
+    text-align: center;
+  }
+
+  .stat-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+  }
+
+  .stat-lbl {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* PITCH ARSENAL */
+  .arsenal-section { margin-bottom: 32px; }
+
+  .pitch-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pitch-row:last-child { border-bottom: none; }
+
+  .pitch-info { flex: 1; }
+
+  .pitch-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  .pitch-numbers {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .clip-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--dark);
+    color: #fff;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+    flex-shrink: 0;
+  }
+
+  .clip-link:hover { background: var(--green); }
+
+  .clip-link svg {
+    width: 13px; height: 13px;
+    fill: currentColor;
+  }
+
+  /* CONTACT */
+  .contact-section { margin-bottom: 0; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--mid);
+  }
+
+  .contact-row:last-child { border-bottom: none; }
+
+  .contact-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    min-width: 60px;
+  }
+
+  .contact-val { color: var(--dark); font-weight: 500; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--dark);
+    padding: 18px 32px;
+    text-align: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .footer a { color: var(--green-mid); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .hero { padding: 32px 20px 28px; }
+    .content { padding: 0 20px 36px; }
+    .player-name { font-size: 38px; }
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .headshot { width: 90px; height: 108px; }
+    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO — edit name, position, school, class, height/weight
+     ============================================================ -->
+<div class="hero">
+  <div class="hero-inner">
+
+    <!-- HEADSHOT: replace src with player's photo URL or file name -->
+    <div class="headshot">PHOTO<br>HERE</div>
+    <!-- <img class="headshot" src="headshot.jpg" alt="Mike Johnson"> -->
+
+    <div class="hero-text">
+      <div class="portal-badge">Transfer Portal · 2025</div>
+      <div class="player-name">Mike<br>Johnson</div>
+      <div class="player-meta">
+        RHP <span>·</span> Junior <span>·</span> 6'2" 205 lbs <span>·</span> State University
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<div class="content">
+
+  <!-- BIO — write 2–3 sentences about the player -->
+  <div class="bio">
+    Weekend starter with a power fastball and above-average command for his level. Led the conference in strikeouts last spring and held opponents to a .218 average over 14 starts. Looking for a mid-major or Power 5 opportunity to compete for a rotation spot immediately.
+  </div>
+
+  <!-- STATS — fill in season numbers -->
+  <div class="stats-section">
+    <div class="section-label">2024 Season Stats</div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-val">2.94</div>
+        <div class="stat-lbl">ERA</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">11.4</div>
+        <div class="stat-lbl">K/9</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">2.8</div>
+        <div class="stat-lbl">BB/9</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">72.1</div>
+        <div class="stat-lbl">IP</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">14</div>
+        <div class="stat-lbl">GS</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val">.218</div>
+        <div class="stat-lbl">BAA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PITCH ARSENAL — add/remove pitch rows, update href links to clips -->
+  <div class="arsenal-section">
+    <div class="section-label">Pitch Arsenal</div>
+
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Four-Seam Fastball</div>
+        <div class="pitch-numbers">89–92 mph · 2,400 rpm · rides through zone</div>
+      </div>
+      <!-- Replace href with actual clip URL (Hudl, YouTube timestamp, etc.) -->
+      <a class="clip-link" href="PASTE_CLIP_LINK_HERE" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Watch
+      </a>
+    </div>
+
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Slider</div>
+        <div class="pitch-numbers">82–84 mph · sharp late break · 8" H / 4" V</div>
+      </div>
+      <a class="clip-link" href="PASTE_CLIP_LINK_HERE" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Watch
+      </a>
+    </div>
+
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Changeup</div>
+        <div class="pitch-numbers">78–80 mph · tumbling action · fastball tunnel</div>
+      </div>
+      <a class="clip-link" href="PASTE_CLIP_LINK_HERE" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        Watch
+      </a>
+    </div>
+
+    <!-- TO ADD ANOTHER PITCH: copy one pitch-row block above and paste here -->
+
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section">
+    <div class="section-label">Contact</div>
+
+    <div class="contact-row">
+      <div class="contact-label">Email</div>
+      <div class="contact-val">mikejohnson@email.com</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Twitter</div>
+      <div class="contact-val">@mikejohnsonRHP</div>
+    </div>
+    <!-- Add phone, Instagram, agent, etc. as needed -->
+  </div>
+
+</div>
+
+<!-- FOOTER — put your Twitter handle and site here -->
+<div class="footer">
+  Profile by <a href="https://twitter.com/YOURHANDLE">@YourHandle</a> · yoursite.com
+</div>
+
+</body>
+</html>
