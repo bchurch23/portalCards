@@ -1,3 +1,6 @@
+Paul skenes · HTML
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,20 +33,24 @@
   .stat-box { background: var(--white); padding: 16px 12px; text-align: center; }
   .stat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 700; color: var(--dark); line-height: 1; }
   .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-  .pitch-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 0; border-bottom: 1px solid var(--border); }
-  .pitch-row:last-child { border-bottom: none; }
-  .pitch-info { flex: 1; }
-  .pitch-name { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.03em; }
-  .pitch-numbers { font-size: 20px; font-weight: 700; color: var(--mid); text-align: center; margin-top: 6px; }
-  .clip-link { display: inline-flex; align-items: center; gap: 7px; background: var(--dark); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 16px; border-radius: 5px; text-decoration: none; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+  .pitch-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; }
+  .pitch-card:last-child { margin-bottom: 0; }
+  .pitch-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .pitch-name { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.03em; }
+  .pitch-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .metric-box { background: var(--cream); border-radius: 6px; padding: 10px 8px; text-align: center; }
+  .metric-val { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; color: var(--dark); line-height: 1; }
+  .metric-lbl { font-size: 10px; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .clip-link { display: inline-flex; align-items: center; gap: 7px; background: var(--dark); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 14px; border-radius: 5px; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
   .clip-link:hover { background: var(--green); }
-  .clip-link svg { width: 13px; height: 13px; fill: currentColor; }
+  .clip-link svg { width: 12px; height: 12px; fill: currentColor; }
   .contact-row { display: flex; align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 17px; }
   .contact-row:last-child { border-bottom: none; }
   .contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); min-width: 70px; }
   .contact-val { color: var(--dark); font-weight: 500; text-decoration: none; }
   .contact-val:hover { color: var(--green); }
   .sample-banner { background: var(--green); color: #fff; text-align: center; padding: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .sample-banner a { color: #fff; }
   .footer { background: var(--dark); padding: 18px 32px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
   .footer a { color: var(--green-mid); text-decoration: none; }
   .footer a:hover { color: #fff; }
@@ -51,13 +58,14 @@
     .hero { padding: 32px 20px 28px; } .content { padding: 0 20px 36px; }
     .player-name { font-size: 38px; } .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
     .headshot { width: 90px; height: 108px; }
+    .pitch-metrics { grid-template-columns: repeat(2, 1fr); }
   }
 </style>
 </head>
 <body>
-
-<div class="sample-banner">⚾ Sample Card — Want one built for you? DM <a href="https://twitter.com/bcanalytics_" target="_blank" style="color:#fff;">@bcanalytics_</a> on X</div>
-
+ 
+<div class="sample-banner">⚾ Sample Card — Want one built for you? DM <a href="https://twitter.com/bcanalytics_" target="_blank">@bcanalytics_</a> on X</div>
+ 
 <div class="hero">
   <div class="hero-inner">
     <img class="headshot" src="paul-skenes.webp" alt="Paul Skenes">
@@ -70,13 +78,13 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="content">
-
+ 
   <div class="bio">
     Two-way threat out of Air Force with elite strikeout numbers and plus velocity for his level. Posted a 2.72 ERA over 112.1 innings across two seasons, punching out 126 batters while holding opponents to a .220 average.
   </div>
-
+ 
   <div class="stats-section">
     <div class="section-label">Career Stats</div>
     <div class="stats-grid">
@@ -88,7 +96,7 @@
       <div class="stat-box"><div class="stat-val">11-4</div><div class="stat-lbl">W-L</div></div>
     </div>
   </div>
-
+ 
   <div class="arsenal-section">
     <div class="section-label">Pitch Arsenal</div>
  
@@ -138,8 +146,8 @@
     </div>
  
   </div>
-
-<div class="contact-section">
+ 
+  <div class="contact-section">
     <div class="section-label">Contact</div>
     <div class="contact-row">
       <div class="contact-label">Phone</div>
@@ -154,12 +162,12 @@
       <a class="contact-val" href="https://twitter.com/Paul_Skenes" target="_blank">@Paul_Skenes</a>
     </div>
   </div>
-
+ 
 </div>
-
+ 
 <div class="footer">
   Profile by <a href="https://twitter.com/bcanalytics_" target="_blank">@bcanalytics_</a>
 </div>
-
+ 
 </body>
 </html>
