@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Skenes · RHP · Transfer Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --green: #1a7a4a; --green-light: #e8f5ee; --green-mid: #2d9c5f;
+    --cream: #f7f4ef; --dark: #111410; --mid: #3a3d35;
+    --muted: #7a7d72; --border: #dedad2; --white: #ffffff;
+  }
+  body { font-family: 'Barlow', sans-serif; background: var(--cream); color: var(--dark); min-height: 100vh; padding: 0; }
+  .hero { background: var(--dark); padding: 48px 32px 36px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; background: var(--green); opacity: 0.12; }
+  .hero-inner { max-width: 800px; margin: 0 auto; display: flex; gap: 24px; align-items: flex-end; }
+  .headshot { width: 150px; height: 170px; border-radius: 6px; object-fit: cover; object-position: top; border: 3px solid var(--green-mid); flex-shrink: 0; background: var(--mid); }
+  .hero-text { flex: 1; }
+  .portal-badge { display: inline-block; background: var(--green); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 3px; margin-bottom: 10px; }
+  .player-name { font-family: 'Barlow Condensed', sans-serif; font-size: 52px; font-weight: 900; color: #fff; line-height: 0.95; text-transform: uppercase; letter-spacing: -0.01em; margin-bottom: 10px; }
+  .player-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .player-meta span { color: var(--green-mid); margin: 0 6px; }
+  .content { max-width: 800px; margin: 0 auto; padding: 0 32px 48px; }
+  .bio { border-left: 3px solid var(--green); padding: 20px 0 20px 20px; margin: 28px 0; font-size: 15px; line-height: 1.7; color: var(--mid); }
+  .section-label { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .stats-section, .arsenal-section { margin-bottom: 32px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .stat-box { background: var(--white); padding: 16px 12px; text-align: center; }
+  .stat-val { font-family: 'Barlow Condensed', sans-serif; font-size: 30px; font-weight: 700; color: var(--dark); line-height: 1; }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .pitch-row { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .pitch-row:last-child { border-bottom: none; }
+  .pitch-info { flex: 1; }
+  .pitch-name { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: var(--dark); text-transform: uppercase; letter-spacing: 0.03em; }
+  .pitch-numbers { font-size: 20px; font-weight: 700; color: var(--mid); text-align: center; margin-top: 6px; }
+  .clip-link { display: inline-flex; align-items: center; gap: 7px; background: var(--dark); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 16px; border-radius: 5px; text-decoration: none; white-space: nowrap; transition: background 0.15s; flex-shrink: 0; }
+  .clip-link:hover { background: var(--green); }
+  .clip-link svg { width: 13px; height: 13px; fill: currentColor; }
+  .contact-row { display: flex; align-items: center; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 17px; }
+  .contact-row:last-child { border-bottom: none; }
+  .contact-label { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); min-width: 70px; }
+  .contact-val { color: var(--dark); font-weight: 500; text-decoration: none; }
+  .contact-val:hover { color: var(--green); }
+  .sample-banner { background: var(--green); color: #fff; text-align: center; padding: 10px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer { background: var(--dark); padding: 18px 32px; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .footer a { color: var(--green-mid); text-decoration: none; }
+  .footer a:hover { color: #fff; }
+  @media (max-width: 480px) {
+    .hero { padding: 32px 20px 28px; } .content { padding: 0 20px 36px; }
+    .player-name { font-size: 38px; } .hero-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .headshot { width: 90px; height: 108px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-banner">⚾ Sample Card — Want one built for you? DM @bcanalytics_ on X</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <img class="headshot" src="paul-skenes.webp" alt="Paul Skenes">
+    <div class="hero-text">
+      <div class="portal-badge">Transfer Portal · 2026</div>
+      <div class="player-name">Paul<br>Skenes</div>
+      <div class="player-meta">
+        C/RHP <span>·</span> Sophomore <span>·</span> 6'6" <span>·</span> Air Force <span>·</span> Lake Forest, CA
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+
+  <div class="bio">
+    Two-way threat out of Air Force with elite strikeout numbers and plus velocity for his level. Posted a 2.72 ERA over 112.1 innings across two seasons, punching out 126 batters while holding opponents to a .220 average. One of the most coveted arms available in the portal.
+  </div>
+
+  <div class="stats-section">
+    <div class="section-label">Career Stats</div>
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-val">2.72</div><div class="stat-lbl">ERA</div></div>
+      <div class="stat-box"><div class="stat-val">112.1</div><div class="stat-lbl">IP</div></div>
+      <div class="stat-box"><div class="stat-val">126</div><div class="stat-lbl">SO</div></div>
+      <div class="stat-box"><div class="stat-val">39</div><div class="stat-lbl">BB</div></div>
+      <div class="stat-box"><div class="stat-val">.220</div><div class="stat-lbl">BAA</div></div>
+      <div class="stat-box"><div class="stat-val">11-4</div><div class="stat-lbl">W-L</div></div>
+    </div>
+  </div>
+
+  <div class="arsenal-section">
+    <div class="section-label">Pitch Arsenal</div>
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Fastball</div>
+        <div class="pitch-numbers">Velo TBD</div>
+      </div>
+      <a class="clip-link" href="#" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch
+      </a>
+    </div>
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Slider</div>
+        <div class="pitch-numbers">Velo TBD</div>
+      </div>
+      <a class="clip-link" href="#" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch
+      </a>
+    </div>
+    <div class="pitch-row">
+      <div class="pitch-info">
+        <div class="pitch-name">Changeup</div>
+        <div class="pitch-numbers">Velo TBD</div>
+      </div>
+      <a class="clip-link" href="#" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>Watch
+      </a>
+    </div>
+  </div>
+
+  <div class="contact-section">
+    <div class="section-label">Contact</div>
+    <div class="contact-row">
+      <div class="contact-label">X</div>
+      <a class="contact-val" href="https://twitter.com/Paul_Skenes" target="_blank">@Paul_Skenes</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Profile by <a href="https://twitter.com/bcanalytics_" target="_blank">@bcanalytics_</a>
+</div>
+
+</body>
+</html>
